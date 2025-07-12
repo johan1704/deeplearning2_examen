@@ -8,8 +8,11 @@ class SpeechToText:
     def __init__(self):
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         #self.processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h")
-        self.processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-xls-r-300m")
-        self.model = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-xls-r-300m").to(self.device)
+        #self.processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h")
+        #self.model = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-base-960h").to(self.device)
+
+        self.processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-large-xlsr-53-french")
+        self.model = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-large-xlsr-53-french").to(self.device)
     
     def transcribe(self, audio_path):
         speech, _ = librosa.load(audio_path, sr=16000)
