@@ -1,0 +1,9 @@
+# .dockerignore
+# Fichiers/dossiers à ignorer par Docker
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+.env
+venv
