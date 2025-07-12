@@ -13,45 +13,66 @@ Analyser ces appels **manuellement** est **long, coûteux** et inefficace.
 
 🔍 **Objectif** : Automatiser ce processus à l’aide d’un pipeline de traitement audio-texte-sentiment.
 
----
 
-## 🏗️ Architecture du Pipeline
 
-Le traitement suit les étapes suivantes :
+## 🌐 Architecture du Système
 
-1. **Chargement de l'audio**  
-   Le fichier audio (appel vocal) est chargé et prétraité.
+### Composants Principaux
+1. **Module de Transcription** :
+   - Basé sur Wav2Vec 2.0 (lien : https://huggingface.co/facebook/wav2vec2-large-xlsr-53-french ) ----sur huggingface
+   - le modèle huggingface.co/facebook/wav2vec2-large-xlsr-53-french est optimisé pour la langue française seulement
+   - Conversion parole-texte en temps
+   - Supporte les formats WAV/MP3/ogg/m4a ..
 
-2. **Transcription vocale avec Wav2Vec 2.0**  
-   Le modèle convertit la voix en texte.
+2. **Moteur d'Analyse** :
+   - Modèle BERT fine-tuné (lien : https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment )
+   - Détection de 5 niveaux de sentiment ( très mecontentt", "mecontent","Neutre", "satisfait", "très satisfait" )
+   - Analyse multilingue
 
-3. **Analyse de sentiment avec BERT**  
-   Le texte obtenu est analysé pour détecter l’émotion exprimée :  
-   ✅ **Positif**, ❌ **Négatif**, 😐 **Neutre**.
+3. **Interface Utilisateur** :
+   - Dashboard interactif
+   - Visualisation des résultats
+   - Gestion des historiques
 
-4. **Résultat final**  
-   Le système retourne la **transcription** + le **sentiment détecté**.
+### Flux de Données
+1. Soumission audio → 2. Transcription → 3. Analyse NLP → 4. Génération rapport → 5. Stockage résultats
 
----
+## 🖥 Prérequis Techniques
 
-## ⚙️ Technologies utilisées
+### Configuration Minimum
+- Docker 20.10+
+- 4 CPU cores
+- 4GB de RAM
+- 5GB d'espace disque
 
-- **Python**
-- **FastAPI** : backend API pour servir les prédictions
-- **Gradio** : interface web interactive
-- **Wav2Vec 2.0** : modèle de transcription vocale
-- **BERT** : modèle de NLP pour l’analyse de sentiment
+### Dépendances
+- Bibliothèques Python (gérées automatiquement)
+- Modèles Hugging Face (téléchargés automatiquement)
 
----
+## 🚀 Installation et Lancement
 
-## 🚀 Lancement rapide
+### Construction des Conteneurs
+bash
 
-```bash
-# Installer les dépendances
-pip install -r requirements.txt
+docker-compose build
 
-# Lancer le backend FastAPI
-uvicorn app.backend.main:app --reload
+### Lancement des Services
+bash
 
-# Lancer l'interface Gradio (frontend)
-python app/frontend/app.py
+docker-compose up 
+
+Accès aux Interfaces
+Backend (API)
+
+    URL : http://localhost:8000
+
+    Endpoints :
+
+        POST /analyze : Soumission des fichiers audio
+
+
+Frontend (Web)
+
+    URL : http://localhost:7860
+
+
