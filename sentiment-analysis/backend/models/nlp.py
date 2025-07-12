@@ -15,4 +15,4 @@ class SentimentAnalyzer:
             outputs = self.model(**inputs)
         probs = torch.nn.functional.softmax(outputs.logits, dim=-1)
         pred = torch.argmax(probs).item()
-        return ["Very Negative", "Negative", "Neutral", "Positive", "Very Positive"][pred], float(probs[0][pred])
+        return ["très mecontent", "mecontent","Neutre", "satisfait", "très satisfait"][pred], float(probs[0][pred])
