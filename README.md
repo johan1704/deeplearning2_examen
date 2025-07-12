@@ -40,7 +40,7 @@ Analyser ces appels **manuellement** est **long, coûteux** et inefficace.
 ## 🖥 Prérequis Techniques
 
 ### Configuration Minimum
-- Docker 20.10+
+- Docker 
 - 4 CPU cores
 - 4GB de RAM
 - 5GB d'espace disque
