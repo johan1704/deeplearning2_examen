@@ -1,7 +1,7 @@
 # deeplearning2_examen
 # 🎧 Détection Automatique de Sentiment dans des Appels Vocaux
 
-Ce projet propose un pipeline intelligent permettant de **transcrire des appels vocaux** et **détecter automatiquement le sentiment** (positif, négatif ou neutre) des clients, en combinant **Wav2Vec 2.0** pour la reconnaissance vocale et **BERT** pour l'analyse de sentiment.
+Ce projet propose un pipeline intelligent permettant de **transcrire des appels vocaux** et **détecter automatiquement le sentiment** (mecontent, très mecontent ,neutre ,satisfait , très satisfait) des clients, en combinant **Wav2Vec 2.0** pour la reconnaissance vocale et **BERT** pour l'analyse de sentiment.
 
 ---
 
